@@ -14,12 +14,11 @@
 }
 
 .keyboard {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: auto;
     min-height: 350px;
     margin-top: 45px;
     display: block;
-    border: 1px solid green;
     padding: 5px;
 }
 
@@ -32,16 +31,74 @@
     float: left;
 }
 
+.key:hover {
+  background-color: rgb(201, 235, 172);
+}
+
+.key:active {
+  background-color: orange;
+}
+
 .clear {
   display: block;
   width: 100%;
   clear: both;
 }
 
-.space {
-  width: 300px;
+.backspace {
+  width: 150px;
 }
+
+.tab {
+  width: 125px;
+}
+
+.flash {
+  width: 60px;
+}
+
+.capslock {
+  width: 120px;
+}
+.enter {
+  width: 140px;
+}
+
+.shift {
+  width: 130px;
+}
+
+.space {
+  width: 388px;
+}
+
+.arrow-up {
+  background: url(img/arrow_up.png) no-repeat;
+}
+.arrow-right {
+  background: url(img/arrow_right.png) no-repeat;
+}
+.arrow-left {
+  background: url(img/arrow_left.png) no-repeat;
+}
+.arrow-down {
+  background: url(img/arrow_down.png) no-repeat;
+  display: block;
+}
+
+
 
 .active {
   background-color: orange;
 }
+
+.teaxarea {
+  width: 1000px;
+    margin: auto;
+    height: 200px;
+    margin-top: 45px;
+    display: block;
+    font-size: 20px;
+
+}
+
