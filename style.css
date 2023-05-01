@@ -1,0 +1,110 @@
+
+.header {
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 45px;
+  padding: 15px;
+  border: 1px solid #d6e9c6;
+  border-radius: 4px;
+  background-color: #d3a9c5;
+  text-align: center;
+  color: rgb(41, 6, 35);
+  font-size: 50px;
+}
+
+.keyboard {
+    max-width: 1000px;
+    margin: auto;
+    min-height: 350px;
+    margin-top: 45px;
+    display: block;
+    padding: 5px;
+}
+
+.key {
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgb(41, 6, 35);
+    border-radius: 5px;
+    margin: 3px;
+    padding: 3px;
+    float: left;
+    background-color: rgb(224, 214, 220);
+}
+
+
+.key:hover {
+  background-color: #d3a9c5;
+  transition: 0.2s;
+}
+
+.key:active {
+  background-color: rgb(125, 20, 108);
+  transition: 0.2s;
+}
+
+.clear {
+  display: block;
+  width: 100%;
+  clear: both;
+}
+
+.backspace {
+  width: 150px;
+}
+
+.tab {
+  width: 82px;
+}
+
+.flash {
+  width: 60px;
+}
+
+.capslock {
+  width: 120px;
+}
+.enter {
+  width: 140px;
+}
+
+.shift {
+  width: 130px;
+}
+
+.space {
+  width: 388px;
+}
+
+.arrow-up {
+  background: url(img/arrow_up.png) no-repeat;
+  background-color: rgb(224, 214, 220)
+}
+.arrow-right {
+  background: url(img/arrow_right.png) no-repeat;
+  background-color: rgb(224, 214, 220)
+}
+.arrow-left {
+  background: url(img/arrow_left.png) no-repeat;
+  background-color: rgb(224, 214, 220)
+}
+.arrow-down {
+  background: url(img/arrow_down.png) no-repeat;
+  background-color: rgb(224, 214, 220)
+}
+
+.active {
+  background-color:rgb(125, 20, 108);
+  transition: 0.2s;
+}
+
+.teaxarea {
+  width: 1000px;
+    margin: auto;
+    height: 200px;
+    margin-top: 45px;
+    display: block;
+    font-size: 20px;
+
+}
+
