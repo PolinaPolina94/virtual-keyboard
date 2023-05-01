@@ -6,10 +6,9 @@
   padding: 15px;
   border: 1px solid #d6e9c6;
   border-radius: 4px;
-  color: #3c763d;
-  background-color: #dff0d8;
+  background-color: #d3a9c5;
   text-align: center;
-  color: green;
+  color: rgb(41, 6, 35);
   font-size: 50px;
 }
 
@@ -25,18 +24,23 @@
 .key {
     width: 50px;
     height: 50px;
-    border: 1px solid green;
+    border: 1px solid rgb(41, 6, 35);
+    border-radius: 5px;
     margin: 3px;
     padding: 3px;
     float: left;
+    background-color: rgb(224, 214, 220);
 }
 
+
 .key:hover {
-  background-color: rgb(201, 235, 172);
+  background-color: #d3a9c5;
+  transition: 0.2s;
 }
 
 .key:active {
-  background-color: orange;
+  background-color: rgb(125, 20, 108);
+  transition: 0.2s;
 }
 
 .clear {
@@ -74,22 +78,24 @@
 
 .arrow-up {
   background: url(img/arrow_up.png) no-repeat;
+  background-color: rgb(224, 214, 220)
 }
 .arrow-right {
   background: url(img/arrow_right.png) no-repeat;
+  background-color: rgb(224, 214, 220)
 }
 .arrow-left {
   background: url(img/arrow_left.png) no-repeat;
+  background-color: rgb(224, 214, 220)
 }
 .arrow-down {
   background: url(img/arrow_down.png) no-repeat;
-  display: block;
+  background-color: rgb(224, 214, 220)
 }
 
-
-
 .active {
-  background-color: orange;
+  background-color:rgb(125, 20, 108);
+  transition: 0.2s;
 }
 
 .teaxarea {
