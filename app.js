@@ -3,7 +3,7 @@ console.log('Hello')
 // Массив onkeyDown keys                  
 const keyBoardEn = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 
                   'Backspace', 'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 
-                  'p', '[', ']', '\\', 'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 
+                  'p', '[', ']', '\\', 'Delete', 'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 
                   'k', 'l', ';', "'", 'Enter', 'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 
                   'm', ',', '.', '/', 'ArrowUp', 'Shift', 'Control', 'Meta', 'Alt', ' ', 'Alt', 
                   'Control', 'ArrowLeft', 'ArrowDown', 'ArrowRight'];             
@@ -53,13 +53,13 @@ function init () {
     if (i === 14) {
       out += '<div class="clear"></div>'
     }
-    if (i === 28) {
+    if (i === 29) {
       out += '<div class="clear"></div>'
     }
-    if (i === 41) {
+    if (i === 42) {
       out += '<div class="clear"></div>'
     }
-    if (i === 54) {
+    if (i === 55) {
       out += '<div class="clear"></div>'
     }
     out += '<div class="key" data="'+keyBoardEn[i]+'">' +keyBoardEn[i]+ '</div>'
@@ -85,11 +85,12 @@ document.querySelector('.body .keyboard .key[data="ArrowUp"]').innerHTML = ' ';
 document.querySelector('.body .keyboard .key[data="ArrowRight"]').innerHTML = ' ';
 document.querySelector('.body .keyboard .key[data="ArrowLeft"]').innerHTML = ' ';
 document.querySelector('.body .keyboard .key[data="ArrowDown"]').innerHTML = ' ';
+document.querySelector('.body .keyboard .key[data="Delete"]').innerHTML = 'Del';
 
 
 // Добавляем заливку при нажатии на клавишу
     document.onkeydown = function (event) {
-      console.log(event.code)
+      console.log(event.key)
       // document.querySelectorAll('.body .keyboard .key').forEach(function(el) {
       //   el.classList.remove('active')
       // })
