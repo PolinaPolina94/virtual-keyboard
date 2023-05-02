@@ -52,7 +52,7 @@ document.body.append(keyboardBlock);
 let description = document.createElement('div');
 description.className = "description";
 description.innerHTML = "Клавиатура создана в операционной системе Windows." + '<br>' +
-                         "Для переключения языка комбинация: левыe ctrl + alt"
+                         "Для переключения языка комбинация: левыe shift + alt"
 document.body.append(description);
 
 // Создаем клавишу
