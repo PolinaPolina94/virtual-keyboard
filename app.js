@@ -49,6 +49,12 @@ let keyboardBlock = document.createElement('div');
 keyboardBlock.className = "keyboard";
 document.body.append(keyboardBlock);
 
+let description = document.createElement('div');
+description.className = "description";
+description.innerHTML = "Клавиатура создана в операционной системе Windows." + '<br>' +
+                         "Для переключения языка комбинация: левыe ctrl + alt"
+document.body.append(description);
+
 // Создаем клавишу
 let key = document.createElement('div');
 key.className = "key";
