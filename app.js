@@ -101,9 +101,34 @@ document.querySelector('.body .keyboard .key[data="Delete"]').innerHTML = 'Del';
 init(keyBoardEn);
 
 
-// Добавляем заливку при нажатии на клавишу
+
+let shiftPressed = false;
+let altPressed = false;
+
+// Добавляем заливку при нажатии на клавишу (ниже ****)
 document.onkeydown = function (event) {
-  console.log(event)
+  textArea.focus();
+
+// Добавляем смену языка с En на RU
+  if (event.code === "ShiftLeft") {
+    event.preventDefault();
+    shiftPressed = !shiftPressed;
+    console.log(shiftPressed) 
+  }
+  if (event.code === "AltLeft") {
+    event.preventDefault();
+    altPressed = !altPressed;
+    console.log(altPressed) 
+  }
+
+  if (shiftPressed && altPressed) {
+    init(keyBoardRu)
+  }
+  if (!shiftPressed && !altPressed) {
+    init(keyBoardEn)
+  }
+
+// *****  
   document.querySelector('.body .keyboard .key[data="'+event.key+'"]').classList.add('active');
 
 // Добавляем стрелки в поле ввода и отменяем дефолтное поведение стрелок при нажатии
@@ -142,7 +167,7 @@ document.onkeydown = function (event) {
         document.querySelectorAll('.body .keyboard .key[data="Shift"]')[1].classList.add('active');
         document.querySelectorAll('.body .keyboard .key[data="Shift"]')[0].classList.remove('active');
       }
-
+    
 
 // Добавляем заливку при клике
     document.querySelectorAll('.body .keyboard .key').forEach(function(el) {
@@ -159,16 +184,14 @@ document.onkeydown = function (event) {
       el.classList.remove('active')
     })
   }
-
   clickKeyboard();  
-
 }
 
 const clickKeyboard = function () {
+
   document.querySelectorAll('.body .keyboard .key').forEach(function(el) {
 
     el.onclick = function (event) {
-      console.log(event)
   
       if (event.target.firstChild.data === "Enter") {
         textArea.value += "\n";
@@ -208,9 +231,6 @@ const clickKeyboard = function () {
         textArea.value += "→"
       }
       textArea.value += event.target.firstChild.data;
-  
   }})
 }
 clickKeyboard();  
-
-
