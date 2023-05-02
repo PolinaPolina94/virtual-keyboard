@@ -35,7 +35,7 @@ const keyBoardRu = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
 // Создаем блок описания
 let headerBlock = document.createElement('div');
 headerBlock.className = "header";
-headerBlock.innerHTML = "Virtual Keyboard";
+headerBlock.innerHTML = "Virtual Keyboard :)";
 document.body.append(headerBlock);
 
 // Создаем текстовое поле
