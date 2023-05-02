@@ -73,8 +73,6 @@ function init (keyboard) {
     out += '<div class="key" data="'+keyboard[i]+'">' +keyboard[i]+ '</div>'
   }
   keyboardBlock.innerHTML = out; 
-}
-init(keyBoardEn);
 
 // // Задаем стили для клавиш 
 document.querySelector('.body .keyboard .key[data="Backspace"]').classList.add('backspace');
@@ -93,36 +91,14 @@ document.querySelector('.body .keyboard .key[data="ArrowRight"]').innerHTML = ' 
 document.querySelector('.body .keyboard .key[data="ArrowLeft"]').innerHTML = ' ';
 document.querySelector('.body .keyboard .key[data="ArrowDown"]').innerHTML = ' ';
 document.querySelector('.body .keyboard .key[data="Delete"]').innerHTML = 'Del';
-
-
-
+}
+init(keyBoardEn);
 
 
 // Добавляем заливку при нажатии на клавишу
 document.onkeydown = function (event) {
   console.log(event)
-
   document.querySelector('.body .keyboard .key[data="'+event.key+'"]').classList.add('active');
-    if (event.key === "Shift" && event.key === "Alt" ) {
-      console.log('yes')
-        init(keyBoardRu)
-        document.querySelector('.body .keyboard .key[data="Backspace"]').classList.add('backspace');
-        document.querySelector('.body .keyboard .key[data="CapsLock"]').classList.add('capslock');
-        document.querySelector('.body .keyboard .key[data="Enter"]').classList.add('enter');
-        document.querySelectorAll('.body .keyboard .key[data="Shift"]')[0].classList.add('shift');
-        document.querySelectorAll('.body .keyboard .key[data="Shift"]')[1].classList.add('shift');
-        document.querySelector('.body .keyboard .key[data=" "]').classList.add('space');
-        document.querySelector('.body .keyboard .key[data="ArrowUp"]').classList.add('arrow-up');
-        document.querySelector('.body .keyboard .key[data="ArrowRight"]').classList.add('arrow-right');
-        document.querySelector('.body .keyboard .key[data="ArrowLeft"]').classList.add('arrow-left');
-        document.querySelector('.body .keyboard .key[data="ArrowDown"]').classList.add('arrow-down');
-        document.querySelector('.body .keyboard .key[data="ArrowUp"]').innerHTML = ' ';
-        document.querySelector('.body .keyboard .key[data="ArrowRight"]').innerHTML = ' ';
-        document.querySelector('.body .keyboard .key[data="ArrowLeft"]').innerHTML = ' ';
-        document.querySelector('.body .keyboard .key[data="ArrowDown"]').innerHTML = ' ';
-        document.querySelector('.body .keyboard .key[data="Delete"]').innerHTML = 'Del';
-                }
-
 
 // Добавляем стрелки в поле ввода и отменяем дефолтное поведение стрелок при нажатии
       if (event.key === "ArrowUp") {
@@ -142,6 +118,9 @@ document.onkeydown = function (event) {
       if(event.key === "Tab") {
         event.preventDefault();
       }
+      if (event.key === "Tab") {
+        textArea.value += " "
+      }
       if (event.code === "ControlRight") {
         document.querySelectorAll('.body .keyboard .key[data="Control"]')[1].classList.add('active');
         document.querySelectorAll('.body .keyboard .key[data="Control"]')[0].classList.remove('active');
@@ -159,7 +138,6 @@ document.onkeydown = function (event) {
       }
 
 
-
 // Добавляем заливку при клике
     document.querySelectorAll('.body .keyboard .key').forEach(function(el) {
       el.onclick = function () {
@@ -169,7 +147,6 @@ document.onkeydown = function (event) {
     }
   });
 
-
   // Убираем заливку при отпускании клавиши
   document.onkeyup = function () {
     document.querySelectorAll('.body .keyboard .key').forEach(function(el) {
@@ -177,60 +154,57 @@ document.onkeydown = function (event) {
     })
   }
 
-// Добавляем текст в поле ввода при клике по клавишам
-document.onclick = function () {
-document.querySelectorAll('.body .keyboard .key').forEach(function(el) {
-  el.onclick = function (event) {
-    textArea.value += event.target.firstChild.data;
-    if (event.target.firstChild.data === "Enter") {
-      console.log('enter')
-      textArea.value += "\n"
-    }
-    // Добавляем стрелки в поле ввода при прике на них 
-    if (event.target.className === "key arrow-up") {
-      textArea.value += "↑"
-    }
-    if (event.target.className === "key arrow-down") {
-      textArea.value += "↓"
-    }
-    if (event.target.className === "key arrow-left") {
-      textArea.value += "←"
-    }
-    if (event.target.className === "key arrow-right") {
-      textArea.value += "→"
-    }
-}})}
+  clickKeyboard();  
 
 }
 
-// function runOnKeys(func, ...codes) {
-//   let pressed = new Set();
-//   document.addEventListener('keydown', function(event) {
-//     pressed.add(event.code);
-//     for (let code of codes) { // все ли клавиши из набора нажаты?
-//       if (!pressed.has(code)) {
-//         return;
-//       }
-//     }
+const clickKeyboard = function () {
+  document.querySelectorAll('.body .keyboard .key').forEach(function(el) {
 
-//     // да, все
+    el.onclick = function (event) {
+      console.log(event)
+  
+      if (event.target.firstChild.data === "Enter") {
+        textArea.value += "\n";
+        textArea.value = textArea.value(replace("Enter",""));  // Вернуться
+      }
+      if (event.target.firstChild.data === "Shift" 
+        || event.target.firstChild.data === "Control" 
+        || event.target.firstChild.data === "Alt") {
+        textArea.value += textArea.value(replace("Shift",""));  // Вернуться
+      }
+      if (event.target.firstChild.data === "Backspace") {
+        textArea.value = textArea.value.slice(0, -1);
+        textArea.value = textArea.value(replace("Backspace",""));  // Вернуться
+      }
+      if (event.target.firstChild.data === "Tab") {
+        textArea.value += " ";
+        textArea.value = textArea.value(replace("Tab",""));  // Вернуться
+      }
+      if (event.target.firstChild.data === "Del") {
+        textArea.value = textArea.value.slice(0, -1);
+        textArea.value = textArea.value(replace("Delete","")) // Вернуться
+      }
+      if (event.target.firstChild.data === "CapsLock") {
+        textArea.value = textArea.value(replace("CapsLock",""));  // Вернуться
+      }
+      // Добавляем стрелки в поле ввода при прике на них 
+      if (event.target.className === "key arrow-up") {
+        textArea.value += "↑"
+      }
+      if (event.target.className === "key arrow-down") {
+        textArea.value += "↓"
+      }
+      if (event.target.className === "key arrow-left") {
+        textArea.value += "←"
+      }
+      if (event.target.className === "key arrow-right") {
+        textArea.value += "→"
+      }
+      textArea.value += event.target.firstChild.data;
+  
+  }})
+}
+clickKeyboard();  
 
-//     // во время показа alert, если посетитель отпустит клавиши - не возникнет keyup
-//     // при этом JavaScript "пропустит" факт отпускания клавиш, а pressed[keyCode] останется true
-//     // чтобы избежать "залипания" клавиши -- обнуляем статус всех клавиш, пусть нажимает всё заново
-//     pressed.clear();
 
-//     func();
-//   });
-
-//   document.addEventListener('keyup', function(event) {
-//     pressed.delete(event.code);
-//   });
-
-// }
-
-// runOnKeys(
-//   () => alert("Привет!"),
-//   "ShiftLeft",
-//   "AltLeft"
-// );
