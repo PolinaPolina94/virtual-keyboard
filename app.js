@@ -8,6 +8,12 @@ const keyBoardEn = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', 
                   'm', ',', '.', '/', 'ArrowUp', 'Shift', 'Control', 'Meta', 'Alt', ' ', 'Alt', 
                   'Control', 'ArrowLeft', 'ArrowDown', 'ArrowRight'];             
                   
+const keyBoardEnCaps = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 
+                  'Backspace', 'Tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 
+                  'P', '[', ']', '\\', 'Delete', 'CapsLock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 
+                  'K', 'L', ';', "'", 'Enter', 'Shift', 'Z', 'X', 'C', 'V', 'B', 'N', 
+                  'M', ',', '.', '/', 'ArrowUp', 'Shift', 'Control', 'Meta', 'Alt', ' ', 'Alt', 
+                  'Control', 'ArrowLeft', 'ArrowDown', 'ArrowRight'];                  
 
 // Массив RU onkeydown keys                              
 const keyBoardRu = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 
@@ -16,6 +22,15 @@ const keyBoardRu = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
                   'CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 
                   'д', 'ж', 'э', 'Enter', 'Shift', 'я', 'ч', 'с', 'м', 
                   'и', 'т', 'ь', 'б', 'ю', '.', 'ArrowUp', 'Shift', 'Control', 
+                  'Meta', 'Alt', ' ',  'Alt', 'Control',
+                  'ArrowLeft', 'ArrowDown', 'ArrowRight'];
+
+const keyBoardRuCaps = ['Ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 
+                  '-', '=', 'Backspace', 'Tab', 'Й', 'Ц', 'У', 'К', 'Е', 
+                  'Н', 'Г', 'Ш', 'Щ', 'З', 'Х', 'Ъ', '\\', 'Delete',
+                  'CapsLock', 'Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 
+                  'Д', 'Ж', 'Э', 'Enter', 'Shift', 'Я', 'Ч', 'С', 'М', 
+                  'И', 'Т', 'Ь', 'Б', 'Ю', '.', 'ArrowUp', 'Shift', 'Control', 
                   'Meta', 'Alt', ' ',  'Alt', 'Control',
                   'ArrowLeft', 'ArrowDown', 'ArrowRight'];
 
@@ -52,7 +67,8 @@ document.body.append(keyboardBlock);
 let description = document.createElement('div');
 description.className = "description";
 description.innerHTML = "Клавиатура создана в операционной системе Windows." + '<br>' +
-                         "Для переключения языка комбинация: левыe shift + alt"
+                         "Для переключения языка комбинация: левыe shift + alt" + '<br>' +
+                        '<i>' + "*Поставь сразу язык En у себя, пожалуйста, надеюсь, у тебя Win тоже*" + '</i>'
 document.body.append(description);
 
 // Создаем клавишу
@@ -97,6 +113,7 @@ document.querySelector('.body .keyboard .key[data="ArrowRight"]').innerHTML = ' 
 document.querySelector('.body .keyboard .key[data="ArrowLeft"]').innerHTML = ' ';
 document.querySelector('.body .keyboard .key[data="ArrowDown"]').innerHTML = ' ';
 document.querySelector('.body .keyboard .key[data="Delete"]').innerHTML = 'Del';
+
 }
 init(keyBoardEn);
 
@@ -104,10 +121,13 @@ init(keyBoardEn);
 
 let shiftPressed = false;
 let altPressed = false;
+let capsPressed = false; 
 
 // Добавляем заливку при нажатии на клавишу (ниже ****)
 document.onkeydown = function (event) {
-  textArea.focus();
+console.log(event)
+
+// document.querySelector('.body .keyboard .key[data="'+event.key+'"]').classList.add('active');
 
 // Добавляем смену языка с En на RU
   if (event.code === "ShiftLeft") {
@@ -123,12 +143,25 @@ document.onkeydown = function (event) {
 
   if (shiftPressed && altPressed) {
     init(keyBoardRu)
+    if (event.code === "CapsLock") {
+      capsPressed = !capsPressed;
+    }
+    if (capsPressed) {
+      init(keyBoardRuCaps)
+     
+    }
   }
   if (!shiftPressed && !altPressed) {
     init(keyBoardEn)
-  }
-
-// *****  
+    if (event.code === "CapsLock") {
+      capsPressed = !capsPressed;
+    }
+    if (capsPressed) {
+      init(keyBoardEnCaps)
+     
+    }
+  } 
+// // *****  
   document.querySelector('.body .keyboard .key[data="'+event.key+'"]').classList.add('active');
 
 // Добавляем стрелки в поле ввода и отменяем дефолтное поведение стрелок при нажатии
@@ -168,7 +201,6 @@ document.onkeydown = function (event) {
         document.querySelectorAll('.body .keyboard .key[data="Shift"]')[0].classList.remove('active');
       }
     
-
 // Добавляем заливку при клике
     document.querySelectorAll('.body .keyboard .key').forEach(function(el) {
       el.onclick = function () {
@@ -215,8 +247,12 @@ const clickKeyboard = function () {
         textArea.value = textArea.value(replace("Delete","")) // Вернуться
       }
       if (event.target.firstChild.data === "CapsLock") {
+        capsPressed = !capsPressed;
+        console.log('caps')
+        console.log(capsPressed)
         textArea.value = textArea.value(replace("CapsLock",""));  // Вернуться
       }
+     
       // Добавляем стрелки в поле ввода при прике на них 
       if (event.target.className === "key arrow-up") {
         textArea.value += "↑"
@@ -231,6 +267,13 @@ const clickKeyboard = function () {
         textArea.value += "→"
       }
       textArea.value += event.target.firstChild.data;
-  }})
+  }
+}
+  )
 }
 clickKeyboard();  
+
+
+// console.log(textArea.getCaret());
+
+

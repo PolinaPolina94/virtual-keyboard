@@ -47,6 +47,10 @@
   transition: 0.2s;
 }
 
+i {
+  font-size: 15px;
+  color: rgb(7, 70, 111);
+}
 
 .description {
   max-width: 1000px;
