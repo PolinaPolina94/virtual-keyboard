@@ -56,6 +56,7 @@ document.body.append(headerBlock);
 // Создаем текстовое поле
 let textArea = document.createElement("TEXTAREA");
 textArea.className = "teaxarea"; 
+textArea.autofocus;
 document.body.append(textArea);
 textArea.focus();
 
@@ -118,10 +119,12 @@ document.querySelector('.body .keyboard .key[data="Delete"]').innerHTML = 'Del';
 init(keyBoardEn);
 
 
-
 let shiftPressed = false;
 let altPressed = false;
 let capsPressed = false; 
+
+
+
 
 // Добавляем заливку при нажатии на клавишу (ниже ****)
 document.onkeydown = function (event) {
@@ -133,12 +136,10 @@ console.log(event)
   if (event.code === "ShiftLeft") {
     event.preventDefault();
     shiftPressed = !shiftPressed;
-    console.log(shiftPressed) 
   }
   if (event.code === "AltLeft") {
     event.preventDefault();
     altPressed = !altPressed;
-    console.log(altPressed) 
   }
 
   if (shiftPressed && altPressed) {
@@ -150,7 +151,10 @@ console.log(event)
       init(keyBoardRuCaps)
      
     }
+
   }
+
+
   if (!shiftPressed && !altPressed) {
     init(keyBoardEn)
     if (event.code === "CapsLock") {
@@ -277,3 +281,24 @@ clickKeyboard();
 // console.log(textArea.getCaret());
 
 
+document.onclick = function() {
+  textArea.focus();
+ };
+
+
+//  function setLocalStorage() {
+//   localStorage.setItem('lang', keyBoardEn);
+// }
+
+//  function setLocalStorage() {
+//   localStorage.setItem('lang', keyBoardRu);
+// }
+// window.addEventListener('beforeunload', setLocalStorage);
+
+// function getLocalStorage() {
+//   if (localStorage.getItem('lang')) {
+//     lang = localStorage.getItem('lang');
+//     init(keyBoardRu);
+//   }
+// }
+// window.addEventListener('load', getLocalStorage);
