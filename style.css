@@ -2,14 +2,14 @@
 .header {
   max-width: 1000px;
   margin: auto;
-  margin-top: 45px;
-  padding: 15px;
+  margin-top: 10px;
+  padding: 5px;
   border: 1px solid #d6e9c6;
   border-radius: 4px;
   background-color: #d3a9c5;
   text-align: center;
   color: rgb(41, 6, 35);
-  font-size: 50px;
+  font-size: 40px;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 
 }
@@ -17,8 +17,8 @@
 .keyboard {
     max-width: 1000px;
     margin: auto;
-    min-height: 350px;
-    margin-top: 45px;
+    /* min-height: 350px; */
+    margin-top: 10px;
     display: block;
     padding: 5px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
@@ -121,10 +121,9 @@ color: rgb(111, 5, 72);
 .teaxarea {
   width: 1000px;
     margin: auto;
-    height: 200px;
-    margin-top: 45px;
+    height: 150px;
+    margin-top: 10px;
     display: block;
     font-size: 20px;
-
 }
 
