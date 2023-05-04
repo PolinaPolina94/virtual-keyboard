@@ -286,16 +286,19 @@ document.onclick = function() {
  };
 
 
+//  function setLocalStorage() {
+//   localStorage.setItem('lang', keyBoardEn);
+// }
 
- function setLocalStorage() {
-  localStorage.setItem('lang', keyBoardRu);
-}
-window.addEventListener('beforeunload', setLocalStorage);
+//  function setLocalStorage() {
+//   localStorage.setItem('lang', keyBoardRu);
+// }
+// window.addEventListener('beforeunload', setLocalStorage);
 
-function getLocalStorage() {
-  if (localStorage.getItem('lang')) {
-    lang = localStorage.getItem('lang');
-    init(keyBoardRu);
-  }
-}
-window.addEventListener('load', getLocalStorage);
+// function getLocalStorage() {
+//   if (localStorage.getItem('lang')) {
+//     lang = localStorage.getItem('lang');
+//     init(keyBoardRu);
+//   }
+// }
+// window.addEventListener('load', getLocalStorage);
