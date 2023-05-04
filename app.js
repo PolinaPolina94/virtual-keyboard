@@ -122,16 +122,21 @@ init(keyBoardEn);
 let shiftPressed = false;
 let altPressed = false;
 let capsPressed = false; 
+let keyBoardCur = 0;
 
-
-
+const keyBoardCurrent = function (lang) {
+  if (lang === 1) {
+    init(keyBoardRu)
+    // console.log(keyBoardCur)
+  } if (lang === 0) {
+    init(keyBoardEn)
+    // console.log(keyBoardCur)
+  }
+}
 
 // Добавляем заливку при нажатии на клавишу (ниже ****)
 document.onkeydown = function (event) {
-console.log(event)
-
 // document.querySelector('.body .keyboard .key[data="'+event.key+'"]').classList.add('active');
-
 // Добавляем смену языка с En на RU
   if (event.code === "ShiftLeft") {
     event.preventDefault();
@@ -143,29 +148,38 @@ console.log(event)
   }
 
   if (shiftPressed && altPressed) {
-    init(keyBoardRu)
+    keyBoardCur = 1;
+    keyBoardCurrent(keyBoardCur);
+    // init(keyBoardRu)
+    // console.log( keyBoardCur)
     if (event.code === "CapsLock") {
       capsPressed = !capsPressed;
     }
     if (capsPressed) {
       init(keyBoardRuCaps)
-     
+      document.querySelector('.body .keyboard .key[data="CapsLock"]').classList.add('activeCaps')
     }
-
   }
 
-
   if (!shiftPressed && !altPressed) {
-    init(keyBoardEn)
+    keyBoardCur = 0;
+    // init(keyBoardEn)
+    // console.log( keyBoardCur)
+    keyBoardCurrent(keyBoardCur);
     if (event.code === "CapsLock") {
       capsPressed = !capsPressed;
     }
     if (capsPressed) {
       init(keyBoardEnCaps)
-     
+      document.querySelector('.body .keyboard .key[data="CapsLock"]').classList.add('activeCaps')
+
     }
+
+
   } 
-// // *****  
+
+
+// *****  
   document.querySelector('.body .keyboard .key[data="'+event.key+'"]').classList.add('active');
 
 // Добавляем стрелки в поле ввода и отменяем дефолтное поведение стрелок при нажатии
@@ -250,10 +264,7 @@ const clickKeyboard = function () {
         textArea.value = textArea.value.slice(0, -1);
         textArea.value = textArea.value(replace("Delete","")) // Вернуться
       }
-      if (event.target.firstChild.data === "CapsLock") {
-        capsPressed = !capsPressed;
-        console.log('caps')
-        console.log(capsPressed)
+      if (event.target.firstChild.data === "CapsLock") {       
         textArea.value = textArea.value(replace("CapsLock",""));  // Вернуться
       }
      
@@ -277,18 +288,9 @@ const clickKeyboard = function () {
 }
 clickKeyboard();  
 
-
-// console.log(textArea.getCaret());
-
-
 document.onclick = function() {
   textArea.focus();
  };
-
-
-//  function setLocalStorage() {
-//   localStorage.setItem('lang', keyBoardEn);
-// }
 
 //  function setLocalStorage() {
 //   localStorage.setItem('lang', keyBoardRu);
@@ -298,7 +300,7 @@ document.onclick = function() {
 // function getLocalStorage() {
 //   if (localStorage.getItem('lang')) {
 //     lang = localStorage.getItem('lang');
-//     init(keyBoardRu);
+//     keyBoardCurrent(lang)
 //   }
 // }
 // window.addEventListener('load', getLocalStorage);
